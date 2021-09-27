@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "ecommerce-react-native-proj",
+  "private_key_id": "766ed9f6b07f4352d9f3c450546cd4d56fd11aed",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC0SWY12NTuFv6G\n/BZHCekOL3kB44ZnNimnkpQCTs2bkCFDRjPh4PgD64XT1JY8fUcdfRaMlmsWhKjN\nKUPV67VSCwH7cvc+2yfa3r3hS+gFG1cR1gwrh5HsqFLskBd1Ar+PkmoZcWx7f6t8\nSmgbXVclyvGpKN3oMraRXB1aAZEZWMoTyw4LSqicU3mEbcnqf+IKbihABwam/0Ek\nqZajxkUcf2K7TjCdpVF9an81lmw/o+EummmeEC1oGSNIO3X5gQYNTtZ1BqNgfU9R\nFpsjteaLWYbd3ui2D6r8kV9thM0+UiABS2p7pIgbj2uyJbnPaoPVerucOVrCbnrf\n+MqTiCH9AgMBAAECggEAL4cOD/H6qE2dif5Y7R9atiejsfDGVN09e/SzWixmHbWQ\nX0jZkpmZKIdlf2OSu52XKtn4INXio0wTqApR3MpHwbovKpezQHnL9vIzgnpdT0NW\n39fa23rg6E+zlLOjy3APCg1iNRTmsWQF1D1VVqlzuP3YWWzxmy4LXSS4hCrXkqOZ\nUroSq5N3FxNBhxBrsukE3Spv9tr4IS1Nb4ys/mr7ol9hbNmwZZAWPRkLYQxvP/Bd\ngTzIbEI4789eYyQ2rF6tMS3SYrLF7zzy2b81q6CN2XFRHh2YcHgD4zmNy+qBqiN8\ntJuNfynY2kO6FB+feH86cXTXghY3XiZcMCacZrJDzQKBgQDZZu6JW4ZJK1OxP4j6\nVCUPKw5WC2kkINYacqRElDrRJU+avKua4Hzfsum4pM0cIL7CdRZz0OyAyWfFsdIR\nWhzbZefw87Xv3Gv5RQlBgn0FR031jdJylr5Eb86W9s1wb/cUaWnyp41AUAdeqPaI\nU6oe5b5Lfjw6i7APY5bEEv3TDwKBgQDUS4y8UPajamKt7xJ/FF2znrTuJZP8sHzU\np1nBvOxfbGRXbG4kfGJPMI+dmBgXtJI1zR1XCEutqBjr3xE3sAp0Lg/o+sGV5VDi\n9wZ/kJBp/GLGQ3zfaeqyLJqzo2pzoU78eme2SbiY2/wnpm5OerBsCeY9A1YcwYcK\n0xFOkb+KMwKBgDGJT68CqM2BTtejZ33KsIsNP34BqZpu1Po/xwhNUj2Xp9TVSrDG\nmA2Mwc6t1oKjP3Qlo9EN+OW7fqbARuJnSw3+4WO41GrsKboprds8dWo/fhcGkr5D\ndOU5KLSjVdpZ2M3Q2zBMV1YhJhy+mTYlAi16Iesnv2eDrsFC6vaQcT+nAoGAOduB\nNo2GOlEzJZ4jV1jwlJRrUQASzeo3iyk00BUyAmujCSR2/CCeFmDwsw2Re1xuAJWv\nKloLbf+DEz2PDrM+lh07ns5AVh7SJZkXP0rh4NC1Br272ZOfMAHyA4VE7NCIm0ys\n2URMN/S0SwYTx/WuATPNeNFg9aNUr4GIlPYp0nsCgYEAuKI4UiA2gQzhl2XMoO7M\n6nhu0/wAQq+tkdngY1DC+djaIXafdEWHkPRrZaFGjQiuoMSYk9Pz0H46be+pY0pN\nbV0NZd8JcsbIeFsWmPmfacu5k1BIyFChS8o0TBAltyFqzOBHhGwyKkX7C5q7gimI\nx0r8ylq5BNLNYg05Q9+bBKI=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-mvy4h@ecommerce-react-native-proj.iam.gserviceaccount.com",
+  "client_id": "101058317596728386795",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-mvy4h%40ecommerce-react-native-proj.iam.gserviceaccount.com"
+}
