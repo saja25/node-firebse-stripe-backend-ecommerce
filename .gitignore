@@ -1,4 +1,5 @@
 node_modules
-stripe.json
-ecommerce-react-native-proj-firebase-adminsdk-mvy4h-15f32957ac.json
-service_key.json
+src/files/stripe.json
+src/files/ecommerce-react-native-proj-firebase-adminsdk-mvy4h-15f32957ac.json
+src/files/service_key.json
+
