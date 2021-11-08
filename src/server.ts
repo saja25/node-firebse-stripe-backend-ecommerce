@@ -7,10 +7,12 @@ import { Request, Response, NextFunction } from "express";
 import {
   compeleteOrder,
   createOrder,
+  deleteCart,
   getAmountAndCart,
   getStripeCustomerId,
   storeStripeCustomerId,
 } from "./utils/FireStoreUtil";
+
 const serviceAccount = require("./files/ecommerce-react-native-proj-firebase-adminsdk-mvy4h-15f32957ac.json");
 
 // stripe initiation
@@ -27,25 +29,23 @@ admin.initializeApp({
     uid: "nameserver",
   },
 });
-
+// initiate express app
 const app = express();
-app.use(decodeIdToken);
-async function decodeIdToken(req: Request, res: Response, next: NextFunction) {
+app.post("/add/user", async (req: Request, res: Response) => {
+  ///////////// here we extract the token and call it user
+  let user;
   if (req.headers?.authorization?.startsWith("Bearer")) {
     const idToken = req.headers.authorization.split("Bearer ")[1];
     try {
       const decodeIdToken = await admin.auth().verifyIdToken(idToken);
-      req["currentUser"] = decodeIdToken;
+      user = decodeIdToken;
     } catch (error) {
       console.log(error);
     }
-    next();
   }
-}
-
-app.post("/add/user", async (req: Request, res: Response) => {
-  const user = req["currentUser"];
-  console.log("saja this is the server user", user); ///////////////
+  ////////////
+  //////////// here we will add user to stripe customer
+  console.log("saja this is the server user"); ///////////////
   if (!user) res.status(403).send("you must be logged in");
   const customer = await stripe.customers.create({ email: user.email });
   if (customer) {
@@ -55,14 +55,21 @@ app.post("/add/user", async (req: Request, res: Response) => {
   console.log("saja this is the server customer", customer); ////////////
 });
 
-app.listen(4242, () => {
-  console.log("node server listening to port 4242 ");
-});
-
 app.post("/checkout", async (req: Request, res: Response) => {
-  const user = req["currentUser"];
+  /////////////
+  let user;
+  if (req.headers?.authorization?.startsWith("Bearer")) {
+    const idToken = req.headers.authorization.split("Bearer ")[1];
+    try {
+      const decodeIdToken = await admin.auth().verifyIdToken(idToken);
+      user = decodeIdToken;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  ////////////
   if (!user) res.status(403).send("you must be logged in");
-  const { customer_id } = await getStripeCustomerId(user);
+  const { customer_id } = await getStripeCustomerId(user); // this function get the id from firebase
   const ephemeralKey = await stripe.ephemeralKeys.create(
     { customer: customer_id },
     { apiVersion: "2020-08-27" }
@@ -80,10 +87,10 @@ app.post("/checkout", async (req: Request, res: Response) => {
     customer: customer_id,
   });
 });
-
+// hrer the finished payments wellbbe apdated in firebase
 app.post(
   "/webhook",
-  bodyParser.raw({
+  express.raw({
     type: "application/json",
   }),
   async (request: Request, response: Response) => {
@@ -98,7 +105,9 @@ app.post(
     } catch (error) {
       response.status(400).send(`Webhook error ${error.message}`);
     }
-    switch (event.type) {
+    switch (
+      event.type //this is the end
+    ) {
       case "payment_intent.succeeded":
         const paymentIntent = event.data.object;
         await compeleteOrder(paymentIntent.id);
@@ -109,3 +118,29 @@ app.post(
     response.json({ received: true });
   }
 );
+//// delete cart without purchaes - i added this
+app.post("/delete/cart", async (req: Request, res: Response) => {
+  ///////////// here we extract the token and call it user
+  let user;
+  if (req.headers?.authorization?.startsWith("Bearer")) {
+    const idToken = req.headers.authorization.split("Bearer ")[1];
+    try {
+      const decodeIdToken = await admin.auth().verifyIdToken(idToken);
+      user = decodeIdToken;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  ////////////
+  console.log("saja this is the server user"); ///////////////
+  if (!user) res.status(403).send("you must be logged in");
+  deleteCart(user);
+  res.status(200).send({ cartDeleted: "Success" });
+  // res.json({
+  //   cartDeleted: "Success",
+  // });
+});
+const port = 4242;
+app.listen(port, () => {
+  console.log("node server listening to port  " + port);
+});

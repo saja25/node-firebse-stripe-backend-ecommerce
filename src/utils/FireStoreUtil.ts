@@ -40,13 +40,14 @@ const getCart = async (
   const cart = cartFir.docs.map((doc) => doc.data()) as Cart[];
   return { cart, cartCollection };
 };
-
+// this function get the id from firebase
 export const getStripeCustomerId = async (user) => {
   const customer = await admin
     .firestore()
-    .collection(CART_COLLECTION)
+    .collection(CUSTOMERS_COLLECTION)
     .doc(user.uid)
     .get();
+  console.log("this is the cus data from server util", customer.data());
   return customer.data();
 };
 export const storeStripeCustomerId = async (
@@ -58,16 +59,27 @@ export const storeStripeCustomerId = async (
   });
 };
 
-export const deleteCart = async (userUid: string) => {
+export const deleteCart = async (user) => {
   const snapshot = await admin
     .firestore()
-    .collection(CART_COLLECTION)
-    .doc(userUid)
+    .collection(CUSTOMERS_COLLECTION)
+    .doc(user.uid)
     .collection(CART_COLLECTION)
     .get();
   snapshot.docs.forEach((doc) => {
-    doc.ref.delete;
+    doc.ref.delete();
   });
+  // admin
+  //   .firestore()
+  //   .collection(CUSTOMERS_COLLECTION)
+  //   .doc(userUid)
+  //   .collection(CART_COLLECTION)
+  //   .listDocuments()
+  //   .then((val) => {
+  //     val.map((val) => {
+  //       val.delete();
+  //     });
+  //   });
 };
 
 export const createOrder = (
@@ -85,7 +97,7 @@ export const createOrder = (
       .set({ price: product.price, count: product.count });
   });
 };
-
+// completed orders will be shown in firebase
 export const compeleteOrder = async (paymentId: string) => {
   const order = admin.firestore().collection(ORDER_COLLECTION).doc(paymentId);
   order.update({ status: "Success" });
